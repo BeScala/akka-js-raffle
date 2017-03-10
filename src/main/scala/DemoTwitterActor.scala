@@ -24,34 +24,34 @@ object RaffleTwitterActor extends js.JSApp {
       import TwitterMsgs._
       val twitterActor = context.actorOf(Props(new TwitterActor()))
 
-      twitterActor ! Track("beescala")
+      twitterActor ! Track("bescala")
 
       def receive = {
         case _msg =>
           val msg = _msg.asInstanceOf[js.Dynamic]
 
           val name = msg.user.screen_name.toString
-          val txt = msg.text.toString
+          val txt = msg.text.toString.toLowerCase
 
-          println("user: "+name+" msg: "+txt)
-
-          if (txt.contains("#raffle")) {
-
+          if (txt.contains("#raffle") 
+               && !msg.retweeted.asInstanceOf[Boolean] 
+               && !msg.favorited.asInstanceOf[Boolean]) {
+          
+          println("user: " + name )
           request.post(
             literal(
-              //url = "http://fe71875c.ngrok.io/raffle/BeeScala",
-              url = "http://69fab5f0.ngrok.io/raffle/BeeScala",
+              url = "http://localhost:9000/raffle/BeScala",
               headers = literal(),
               data = literal(
                 participantName = s"$name"
               )
             ),
             (err: js.Dynamic, res: js.Dynamic, body: js.Dynamic) => {
-              println("renato answer "+body.toString)
+              println(body.toString)
             }
           )
         } else {
-          println("sorry no #raffle in your message..")
+          println(s"sorry $name no #raffle in your message..")
         }
       }
     }))

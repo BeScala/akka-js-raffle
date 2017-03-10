@@ -1,0 +1,24 @@
+{
+  "name": "renato_raffle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ajax-request": "^1.2.1",
+    "node-tweet-stream": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreaTP/renato_raffle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andreaTP/renato_raffle/issues"
+  },
+  "homepage": "https://github.com/andreaTP/renato_raffle#readme"
+}
